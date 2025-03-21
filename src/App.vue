@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import HelloWorld from './components/HelloWorld.vue'
-import {Keyboard} from './packages/Keyboard'
-import {KeyboardInput} from './packages/KeyboardInput';
+// import {Keyboard} from './packages/Keyboard'
+// import {KeyboardInput} from './packages/KeyboardInput';
+import { KeyboardInput } from '../dist/screen-keyboard.js'
+import  '../dist/screen-keyboard.css'
 
 function handleInput(key: string) {
   console.log("🚀 ~ handleInput ~ key:", key)
