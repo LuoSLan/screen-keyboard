@@ -2,7 +2,7 @@
  * @Author: LuoSLan 1550527769@qq.com
  * @Date: 2025-03-19 22:21:25
  * @LastEditors: LuoSLan 1550527769@qq.com
- * @LastEditTime: 2025-03-21 21:29:11
+ * @LastEditTime: 2025-03-22 01:17:12
  * @FilePath: \screen-keyboard\src\packages\keyboard\Keyboard.vue
  * @Description: 虚拟键盘
 -->
@@ -144,6 +144,11 @@ const close = () => {
 }
 .keyboard * {
   box-sizing: border-box;
+
+  -webkit-user-select: none; /* 适用于Webkit浏览器 */
+  -moz-user-select: none; /* 适用于Firefox */
+  -ms-user-select: none; /* 适用于IE10 */
+  user-select: none; /* 标准语法 */
 }
 
 .keyboard {

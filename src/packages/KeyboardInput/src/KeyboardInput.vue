@@ -2,7 +2,7 @@
  * @Author: LuoSLan 1550527769@qq.com
  * @Date: 2025-03-19 23:19:13
  * @LastEditors: LuoSLan 1550527769@qq.com
- * @LastEditTime: 2025-03-21 21:46:17
+ * @LastEditTime: 2025-03-23 03:57:45
  * @FilePath: \screen-keyboard\src\packages\KeyboardInput\KeyboardInput.vue
  * @Description: 虚拟键盘输入框
 -->
@@ -14,7 +14,15 @@ import { onClickOutside } from '@vueuse/core';
 
 defineOptions({ name: 'KeyboardInput', inheritAttrs: false });
 
-const emit = defineEmits(['change', 'submit', 'update:value', 'input']);
+const emit = defineEmits([
+  'change',
+  'submit',
+  'confirm',
+  'update:value',
+  'input',
+  'close',
+  'open',
+]);
 const attrs = useAttrs({ excludeDefaultKeys: false });
 const props = defineProps({
   value: {
@@ -29,7 +37,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  keyboardShowFromProps: {
+  show: {
     type: Boolean,
     default: false,
   },
@@ -50,11 +58,22 @@ const emitData = ref<string[]>(['']);
 const [state] = useValue(props, 'value', 'change', emitData);
 
 function handleInput(e: Event) {
+  const inputEvent = e as InputEvent;
+  const target = e.target as HTMLInputElement;
+  const value = target.value;
+  const key = inputEvent.data || target.value;
+  state.value = value;
+  emit('input', key);
   emit('update:value', state.value);
 }
 
 function handleSubmit() {
   emit('submit', state.value);
+  emit('confirm', state.value);
+}
+
+function handleFocus() {
+  props.isFocusShow && (keyboardShow.value = true);
 }
 
 const handleKeyboardValue = (
@@ -62,7 +81,6 @@ const handleKeyboardValue = (
 ) => {
   const value = insertTxtAndSetCursor(...args);
   value && (state.value = value);
-  emit('change', state.value);
 };
 
 function changeKeyboardShow(visible: boolean) {
@@ -75,13 +93,25 @@ function handleKeyboardBlur() {
 
 defineExpose({ changeKeyboardShow });
 
-if (props.keyboardShowFromProps) {
-  keyboardShow.value = true;
-}
+// if (props.show) {
+//   keyboardShow.value = true;
+// }
 watch(
-  () => props.keyboardShowFromProps,
+  () => props.show,
   (v) => {
     keyboardShow.value = v;
+  },
+  { immediate: true }
+);
+
+watch(
+  () => keyboardShow.value,
+  (v) => {
+    if (v) {
+      emit('open');
+    } else {
+      emit('close');
+    }
   }
 );
 
@@ -96,18 +126,26 @@ const getBindValue = computed(() => ({ ...unref(attrs), ...props }));
           v-bind="getBindValue"
           type="text"
           class="lsl-keyboard-input"
-          v-model="state"
-          @focus="isFocusShow && (keyboardShow = true)"
+          @focus="handleFocus"
           @keydown.enter="handleSubmit"
           ref="keyboardInputRef"
           @input="handleInput"
         />
         <span v-show="!getBindValue.disabled && keyboardShow">
-          <img @click="keyboardShow = !keyboardShow" class="svgIcon" src="../../../assets/keyboard_filled.svg" alt="keyboard" />
+          <img
+            @click="keyboardShow = !keyboardShow"
+            class="svgIcon"
+            src="../../../assets/keyboard_filled.svg"
+            alt="keyboard"
+          />
         </span>
         <span v-show="!getBindValue.disabled && !keyboardShow">
-          <img @click="keyboardShow = !keyboardShow" class="svgIcon" src="../../../assets/keyboard_regular.svg" alt="keyboard" />
-
+          <img
+            @click="keyboardShow = !keyboardShow"
+            class="svgIcon"
+            src="../../../assets/keyboard_regular.svg"
+            alt="keyboard"
+          />
         </span>
       </span>
     </div>
