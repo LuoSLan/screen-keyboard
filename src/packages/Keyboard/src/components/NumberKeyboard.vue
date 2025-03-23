@@ -2,12 +2,12 @@
  * @Author: LuoSLan 1550527769@qq.com
  * @Date: 2025-03-19 22:28:21
  * @LastEditors: LuoSLan 1550527769@qq.com
- * @LastEditTime: 2025-03-21 21:37:24
+ * @LastEditTime: 2025-03-23 21:28:40
  * @FilePath: \screen-keyboard\src\packages\Keyboard\components\NumberKeyboard.vue
  * @Description: 该组件是一个数字键盘，包含数字0-9、小数点、负号、删除键和清空键
 -->
 <script setup lang="ts">
-import { InsertTxtAndSetCursor } from '../types/keyboard'
+import type { InsertTxtAndSetCursor } from '../types/keyboard'
 
 const emit = defineEmits(['insertTxtAndSetCursor', 'toggleKeyboardType', 'confirm'])
 
