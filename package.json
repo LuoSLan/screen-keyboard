@@ -4,6 +4,13 @@
   "version": "0.0.2",
   "author": "LuoSLan",
   "description": "A virtual keyboard for screen input",
+  "bugs": {
+    "url": "https://github.com/LuoSLan/screen-keyboard/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LuoSLan/screen-keyboard.git"
+  },
   "keywords": [
     "virtual-keyboard",
     "keyboard",
@@ -16,24 +23,44 @@
   "type": "module",
   "main": "./dist/screen-keyboard.umd.cjs",
   "module": "./dist/screen-keyboard.js",
+  "types": "./dist/index.d.ts",
   "files": [
-    "dist",
+    "dist/*",
     "package.json",
-    "README.md"
+    "README.md",
+    "types/*"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/screen-keyboard.js",
+      "require": "./dist/screen-keyboard.umd.cjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "pub": "pnpm build && npm publish --access public"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^22.13.11",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
     "@vueuse/core": "^13.0.0",
     "less": "^4.2.2",
+    "lodash-es": "^4.17.21",
+    "path": "^0.12.7",
     "terser": "^5.39.0",
     "typescript": "~5.7.2",
     "vite": "^6.2.0",
+    "vite-plugin-dts": "^4.5.3",
     "vue": "^3.5.13",
     "vue-tsc": "^2.2.4"
   }
