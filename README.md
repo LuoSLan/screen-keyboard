@@ -1,14 +1,13 @@
-<!--
- * @Author: LuoSLan 1550527769@qq.com
- * @Date: 2025-03-21 23:25:50
- * @LastEditors: LuoSLan 1550527769@qq.com
- * @LastEditTime: 2025-03-22 00:13:16
- * @FilePath: \screen-keyboard\README.md
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 # screen-keyboard
 
-### Install & Use
+```markdown
+[![Downloads](https://img.shields.io/npm/dm/@lslan/screen-keyboard.svg)](https://www.npmjs.com/package/@lslan/screen-keyboard) [![Version](https://img.shields.io/npm/v/@lslan/screen-keyboard.svg)](https://www.npmjs.com/package/@lslan/screen-keyboard)
+```
+English | [简体中文](./README-zh_CN.md)
+
+## Getting started
+
+### Install
 
 ```bash
 pnpm i @lslan/screen-keyboard
@@ -18,7 +17,6 @@ npm install @lslan/screen-keyboard
 yarn add @lslan/screen-keyboard
 ```
 
----
 
 ### How to use?
 
@@ -58,10 +56,44 @@ function handleInput(key: string) {
 </template>
 ```
 
-### Components
+## Components
 
 | Component name | Descriptions                                                 |
 | -------------- | ------------------------------------------------------------ |
-| Keyboard       | Provide a numeric and alphabetic keyboard, and its position can be dragged |
+| Keyboard       | Provides a numeric and alphabetic keyboard, and its position can be dragged |
 | KeyboardInput  | An input component with the virtual keyboard                 |
+
+
+> **Keyboard**
+
+| Property    | Description                                                  | Type                                                         | Default    |
+| ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------- |
+| defaultType | The default keyboard type                                    | number \| text                                               | number     |
+| position    | The initial position of the keyboard panel on the screen when it is displayed | center \|topCenter \| bottomCenter \| leftTop \| leftBottom \| rightTop \| rightBottom \| [number,number] | leftBottom |
+| allowToggle | Allow keyboard type switching                                | boolean                                                      | false      |
+| canMove     | Can keyboard panel be moved by dragging                      | boolean                                                      | true       |
+| onClose     | Callback when click the Close button                         | () => void                                                   | -          |
+| onInput     | Callback when input                                          | (key:string, isDelete:boolean, isDeleteAll:boolean) => void  | -          |
+| onConfirm   | Callback when click the Confirm button                       | () => void                                                   | -          |
+| onDelete    | Callback when click the Backspace button                     | () => void                                                   | -          |
+| onDeleteAll | Callback when click the Clear button                         | () => void                                                   | -          |
+
+> **KeyboardInput**
+
+| Property       | Description                                                  | Type                                                         | Default    |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------- |
+| value(v-model) | The input content value                                      | string                                                       | -          |
+| show           | Whether to show the keyboard panel                           | boolean                                                      | false      |
+| size           | The size of the input box                                    | small \| middle \| large                                     | middle     |
+| isFocusShow    | Auto show the keyboard panel when focus                      | boolean                                                      | false      |
+| disabled       | Whether the input is disabled                                | boolean                                                      | false      |
+| defaultType    | The default keyboard type                                    | number \| text                                               | number     |
+| position       | The initial position of the keyboard panel on the screen when it is displayed | center \| leftTop \| leftBottom \| rightTop \| rightBottom \| [number,number] | leftBottom |
+| allowToggle    | Allow keyboard type switching                                | boolean                                                      | false      |
+| canMove        | Can the keyboard panel be moved by dragging                  | boolean                                                      | true       |
+| onInput        | Callback when input                                          | (key:string, isDelete:boolean, isDeleteAll:boolean) => void  | -          |
+| onChange       | Callback when value change                                   | (value:string) => void                                       | -          |
+| onConfirm      | Callback when click the Confirm button                       | (value:string) => void                                       | -          |
+| onClose        | Callback when keyboard panel display                         | () => void                                                   | -          |
+| onOpen         | Callback when keyboard panel show                            | () => void                                                   | -          |
 
