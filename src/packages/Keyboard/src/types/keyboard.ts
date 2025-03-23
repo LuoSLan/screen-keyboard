@@ -18,10 +18,12 @@ export type EmitOptions<E> = {
 
 export type Recordable<T = any> = Record<string, T>
 
-export type keyboardPosition =
+export type KeyboardPosition =
 |'center'
 | 'leftTop'
 | 'rightTop'
 | 'leftBottom'
 | 'rightBottom'
+| 'topCenter'
+| 'bottomCenter'
 | [number, number]

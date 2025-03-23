@@ -2,16 +2,17 @@
  * @Author: LuoSLan 1550527769@qq.com
  * @Date: 2025-03-19 22:21:25
  * @LastEditors: LuoSLan 1550527769@qq.com
- * @LastEditTime: 2025-03-22 01:17:12
+ * @LastEditTime: 2025-03-23 21:28:12
  * @FilePath: \screen-keyboard\src\packages\keyboard\Keyboard.vue
  * @Description: 虚拟键盘
 -->
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import type { PropType } from 'vue';
 import { useKeyboard, useKeyboardPotion } from './hooks/useKeyboard';
 import NumberKeyboard from './components/NumberKeyboard.vue';
 import TextKeyboard from './components/TextKeyboard.vue';
+import type { KeyboardPosition } from './types/keyboard';
 
 const emit = defineEmits([
   'close',
@@ -31,14 +32,7 @@ const props = defineProps({
     default: false,
   },
   position: {
-    type: [String, Array] as PropType<
-      | 'center'
-      | 'leftTop'
-      | 'rightTop'
-      | 'leftBottom'
-      | 'rightBottom'
-      | [number, number]
-    >,
+    type: [String, Array] as PropType<KeyboardPosition>,
     default: 'leftBottom',
   },
   canMove: {
@@ -75,7 +69,7 @@ const toggleKeyboardType = (type?: KeyboardType): void => {
   emit('toggleKeyboardType', type);
 };
 
-const insertTxtAndSetCursor = (...ags) => {
+const insertTxtAndSetCursor = (...ags: any[]) => {
   emit('input', ...ags);
 };
 

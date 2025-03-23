@@ -1,10 +1,10 @@
-import { ref, unref, useTemplateRef } from 'vue';
+import { ref, unref } from 'vue';
 import type { Ref, EmitsOptions } from 'vue';
 import type {
   InsertTxtAndSetCursor,
   EmitOptions,
   Recordable,
-  keyboardPosition,
+  KeyboardPosition,
 } from '../types/keyboard';
 
 /**
@@ -22,7 +22,7 @@ export function useKeyboard(
 ) {
   const { moveX, moveY, isMoving } = moveOptions;
   const keyboardEl = ref<HTMLElement | null>(null);
-  // const keyboardEl = useTemplateRef<HTMLElement>(key);
+
   const downInfo: Ref<any> = ref({});
 
   const moveAction = (e: MouseEvent | Touch) => {
@@ -165,13 +165,13 @@ export function useKeyboardInput<E extends EmitsOptions = EmitsOptions>(
   };
 }
 
-export function useKeyboardPotion(props) {
+export function useKeyboardPotion(props: Recordable) {
   const moveX = ref(0);
   const moveY = ref(0);
   const isMoving = ref(false);
 
-  const position = props.position as keyboardPosition;
-  const defaultType = props.defaultType as string;
+  const position = props.position as KeyboardPosition;
+  const defaultType = props.defaultType as 'number' | 'text';
   if (!position) {
     throw new Error('position is required');
   }
@@ -190,7 +190,7 @@ export function useKeyboardPotion(props) {
       width: 600,
       height: 245,
     },
-  };
+  } as const;
 
   // 获取视口宽高
   const { clientWidth, clientHeight } =
@@ -222,6 +222,8 @@ export function useKeyboardPotion(props) {
     // 计算位置
     const positionMap: Recordable<[number, number]> = {
       center: [maxMove.x / 2, maxMove.y / 2],
+      topCenter: [maxMove.x / 2, maxMove.y],
+      bottomCenter: [maxMove.x / 2, 0],
       leftTop: [0, maxMove.y],
       leftBottom: [0, 0],
       rightTop: [maxMove.x, maxMove.y],
