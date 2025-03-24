@@ -1,8 +1,8 @@
 # screen-keyboard
 
-```markdown
+
 [![Downloads](https://img.shields.io/npm/dm/@lslan/screen-keyboard.svg)](https://www.npmjs.com/package/@lslan/screen-keyboard) [![Version](https://img.shields.io/npm/v/@lslan/screen-keyboard.svg)](https://www.npmjs.com/package/@lslan/screen-keyboard)
-```
+
 简体中文| [English](./README.md)
 
 ## 开始使用
