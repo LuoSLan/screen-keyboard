@@ -1,7 +1,7 @@
 {
   "name": "@lslan/screen-keyboard",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "LuoSLan",
   "description": "A virtual keyboard for screen input",
   "bugs": {
