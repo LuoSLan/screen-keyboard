@@ -2,7 +2,7 @@
  * @Author: LuoSLan 1550527769@qq.com
  * @Date: 2025-03-19 23:19:13
  * @LastEditors: LuoSLan 1550527769@qq.com
- * @LastEditTime: 2025-03-23 23:52:18
+ * @LastEditTime: 2025-03-24 23:23:31
  * @FilePath: \screen-keyboard\src\packages\KeyboardInput\KeyboardInput.vue
  * @Description: 虚拟键盘输入框
 -->
@@ -11,7 +11,7 @@ import { ref, unref, watch, computed, type PropType } from 'vue';
 import { useAttrs, useValue } from '../../Keyboard';
 import { Keyboard, useKeyboardInput } from '../../Keyboard';
 import { onClickOutside } from '@vueuse/core';
-import { omit } from 'lodash-es';
+import { omit } from 'radash';
 
 defineOptions({ name: 'KeyboardInput', inheritAttrs: false });
 
@@ -122,7 +122,6 @@ watch(
 
 const getBindValue = computed(() => {
   const bindValue = { ...unref(attrs), ...props };
-
   return omit(bindValue, ['size']);
 });
 

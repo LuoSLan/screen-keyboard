@@ -3,7 +3,6 @@ import keyboard from "./src/Keyboard.vue";
 
 keyboard.install = (app: App) => {
   keyboard.name = "Keyboard";
-  // app.component(keyboard.__name as string, keyboard)
   app.component(keyboard.name, keyboard);
 };
 

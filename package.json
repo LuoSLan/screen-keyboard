@@ -1,7 +1,7 @@
 {
   "name": "@lslan/screen-keyboard",
   "private": false,
-  "version": "0.0.2",
+  "version": "1.0.0",
   "author": "LuoSLan",
   "description": "A virtual keyboard for screen input",
   "bugs": {
@@ -30,12 +30,6 @@
     "README.md",
     "types/*"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/screen-keyboard.js",
-      "require": "./dist/screen-keyboard.umd.cjs"
-    }
-  },
   "publishConfig": {
     "access": "public"
   },
@@ -43,7 +37,8 @@
     "dev": "vite",
     "build": "vue-tsc -b --noEmit && vite build",
     "preview": "vite preview",
-    "pub": "pnpm build && npm publish --access public"
+    "pub": "pnpm build && npm publish --access public",
+    "pubBeta": "pnpm build && npm publish --access public --tag beta"
   },
   "peerDependencies": {
     "vue": "^3.0.0"
@@ -55,8 +50,8 @@
     "@vue/tsconfig": "^0.7.0",
     "@vueuse/core": "^13.0.0",
     "less": "^4.2.2",
-    "lodash-es": "^4.17.21",
     "path": "^0.12.7",
+    "radash": "^12.1.0",
     "terser": "^5.39.0",
     "typescript": "~5.7.2",
     "vite": "^6.2.0",

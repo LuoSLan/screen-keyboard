@@ -10,6 +10,7 @@ export default defineConfig({
       outDir: 'dist', // 输出目录
       insertTypesEntry: true, // 自动插入 types 入口
       tsconfigPath: './tsconfig.app.json', // 如果是vite生成的项目，需要指明为./tsconfig.app.json
+      rollupTypes: true
     }),
   ],
   resolve: {
